@@ -1,2 +1,29 @@
-<p>home works!</p>
-<app-auth-button></app-auth-button>
+<div class="banner-container">
+    <div class="banner-content">
+        <div>
+            <p>Delicious Cafe</p>
+            <h2>
+                Sweet Treats, <br>
+                Perfect Eats
+            </h2>
+            <div>
+                <button class="shop-btn">Shop Now</button>
+                <button class="learn-btn">Learn More</button>
+            </div>
+        </div>
+        <img src="assets/images/LandingProduct.png" alt="Bakery Banner Image" />    
+    </div>
+</div>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="#933C24" fill-opacity="1" d="M0,192L40,192C80,192,160,192,240,181.3C320,171,400,149,480,165.3C560,181,640,235,720,261.3C800,288,880,288,960,288C1040,288,1120,288,1200,277.3C1280,267,1360,245,1400,234.7L1440,224L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z"></path>
+</svg>
+<div class="showcase-container">
+    <h1>
+        Top Products
+    </h1>
+    <div *ngFor="let product of productsData" class="product-card">
+        <app-product-card
+            [product]="product"
+        ></app-product-card>
+    </div>
+</div>

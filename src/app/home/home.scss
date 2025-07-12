@@ -1,0 +1,50 @@
+@use '../../styles//buttons';
+@use '../../styles/variables';
+
+.banner-container{
+    display: flex;
+    width: 100%;
+    height: 615px;
+    background-color: variables.$brown;
+    font-family: variables.$Poppins;
+    
+    .banner-content{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        padding: 0px 100px 0px 100px;
+        align-items: flex-end;
+
+        
+        img {
+            width: auto;
+            height: 500px;
+            object-fit: cover;
+        }
+    }
+
+    
+    p {
+        color: variables.$dimmedYellow;
+        font-size: 24px;
+    }
+
+    h2 {
+        color: variables.$white;
+        font-size: 74px;
+        font-family: variables.$SansitaSwashed;
+    }
+}
+
+
+.shop-btn {
+  @include buttons.BrownButton;
+}
+
+.learn-btn {
+  @include buttons.NoBorderButton;
+}
+
+
+

@@ -1,0 +1,30 @@
+@use 'variables';
+
+@mixin BrownButton {
+  background-color: variables.$white;
+  color: variables.$brown;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+@mixin NoBorderButton {
+  background-color: transparent;
+  color: variables.$dimmedYellow;
+  border: none;
+  font-weight: bold;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
