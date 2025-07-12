@@ -2,10 +2,17 @@ import { Component } from '@angular/core';
 import { ProductCard } from '../components/product-card/product-card';
 import { CommonModule } from '@angular/common';
 import { Product } from '../interface/product.interface'; // Assuming you have a Product model defined
+import { ButtonModule } from 'primeng/button';
+
+
 
 @Component({
   selector: 'app-home',
-  imports: [ProductCard, CommonModule],
+  imports: [
+    ProductCard,
+    CommonModule, 
+    ButtonModule
+  ],
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })
