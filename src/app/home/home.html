@@ -21,10 +21,12 @@
     <h1>
         Top Products
     </h1>
-    <div *ngFor="let product of productsData" class="product-card">
-        <app-product-card
-            [product]="product"
-        ></app-product-card>
+    <div class="product-cards">
+        <div *ngFor="let product of productsData" >
+            <app-product-card
+                [product]="product"
+            ></app-product-card>
+        </div>
     </div>
 </div>
 <!-- <p-button label="Check" /> -->

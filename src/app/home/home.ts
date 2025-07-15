@@ -46,5 +46,17 @@ export class Home {
       image: 'assets/images/Product4.png',
       price: 5.99
     },
+    {
+      id: 5,
+      name: 'Lemon Tart',
+      image: 'assets/images/Product5.png',
+      price: 5.99
+    },
+    {
+      id: 6,
+      name: 'Lemon Tart',
+      image: 'assets/images/Product6.png',
+      price: 5.99
+    },
   ];
 }

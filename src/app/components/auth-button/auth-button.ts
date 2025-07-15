@@ -4,15 +4,20 @@ import { DOCUMENT, CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-auth-button',
+  styleUrl: './auth-button.scss',
   template: `
   <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
-      <button (click)="auth.logout({ logoutParams: { returnTo: document.location.origin } })">
+      <button 
+        class="auth-button-logout"
+        (click)="auth.logout({ logoutParams: { returnTo: document.location.origin } })"
+      >
         Log out
       </button>
     </ng-container>
 
     <ng-template #loggedOut>
       <button 
+        class="auth-button-login"
         (click)="auth.loginWithRedirect({
         appState: { target: '/dashboard' }
       })"
