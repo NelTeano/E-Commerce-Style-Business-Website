@@ -1,0 +1,31 @@
+<div class="cart-item" *ngIf="product">
+  <section>
+    <img [src]="product.image" alt="{{ product.name }}" class="item-image">
+    <div class="item-details">
+      <h3>{{ product.name }}</h3>
+      <p>Price: {{ product.price | currency }}</p>
+    </div>
+  </section>
+
+  <div class="quantity-container">
+    <i
+      class="pi pi-plus"
+      style="font-size: 1rem; cursor: pointer;"
+      (click)="increaseQuantity()"
+    ></i>
+    <p>{{ product.quantity }}</p>
+    <i
+      class="pi pi-minus"
+      style="font-size: 1rem; cursor: pointer;"
+      (click)="decreaseQuantity()"
+    ></i>
+  </div>
+
+  <div class="remove-button">
+    <i
+      class="pi pi-cart-minus"
+      style="font-size: 1.5rem; cursor: pointer;"
+      (click)="removeProductFromCart()"
+    ></i>
+  </div>
+</div>
