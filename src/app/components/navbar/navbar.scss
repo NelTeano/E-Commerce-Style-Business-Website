@@ -1,18 +1,30 @@
+@use '../../../styles/variables';
+
 .navbar {
     display: flex;
     position: fixed;
-    color: white;
+    flex-direction: row;
+    top: 0;
+    height: 100px;
+    color: variables.$black;
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    background-color: burlywood;
+    background-color: white;
+    padding: 10px 80px 10px 80px;
+    z-index: 1000;
 
-    .navbar-brand {
-        margin-left: 20px;
-    }
+    .navbar-left{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+        font-weight: 600;
 
-    .navbar-right {
-        margin-right: 20px;
+        img{
+            width: 80px;
+            height: 80px;
+        }
     }
 
     ul {
@@ -23,9 +35,12 @@
         padding: 0;
 
         li {
-        list-style: none;
-        display: inline-block;
-        font-family: "Poppins", sans-serif;
+            list-style: none;
+            display: inline-block;
+            font-family: "Poppins", sans-serif;
+            text-transform: uppercase;
+            font-size: 16px;
+            cursor: pointer;
         }
     }
 }

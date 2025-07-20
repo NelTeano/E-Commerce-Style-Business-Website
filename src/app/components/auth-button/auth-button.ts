@@ -11,7 +11,7 @@ import { DOCUMENT, CommonModule } from '@angular/common';
         class="auth-button-logout"
         (click)="auth.logout({ logoutParams: { returnTo: document.location.origin } })"
       >
-        Log out
+        Sign Out
       </button>
     </ng-container>
 
@@ -22,7 +22,7 @@ import { DOCUMENT, CommonModule } from '@angular/common';
         appState: { target: '/dashboard' }
       })"
       >
-        Log in
+        Sign In
       </button>
   </ng-template>
   `,

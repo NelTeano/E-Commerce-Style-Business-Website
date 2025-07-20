@@ -1,0 +1,64 @@
+<div class="menu-container">
+    <div class="menu-board-container">
+        <div class="menu-board-content">
+            <section>
+                <h1>
+                    Bursting with Brightness 
+                </h1>
+                <p>
+                    Cool off with our icy thirst-quenchers.
+                </p>
+            </section>
+            <div>
+                Discover The Flavors
+            </div>
+        </div>
+        <section>
+            <img src="assets/images/ShopLogo1.png" alt="Shop Image" class="menu-image">
+        </section>
+    </div>
+    <div class="menu-search-container">
+        <div>
+            <h2>
+                Menu
+            </h2>
+            <input pInputText type="text" placeholder="Search our drinks, pastries, and foods!" class="menu-search-input">
+        </div>
+    </div>
+    <div class="menu-menu-container">
+        <section class="menu-selection-container">
+            <div class="menu-selections" *ngFor="let variant of menuVariants">
+                <h1>{{ variant.variant }}</h1>
+                <section>
+                    <div *ngFor="let item of variant.subVariants">
+                        <p>{{ item }}</p>
+                    </div>
+                </section>
+            </div>
+        </section>
+        <section class="menu-products-container">
+            <div class="menu-products-header" >
+                <p>
+                    Featured Drinks
+                </p>
+            </div>
+            <div class="menu-products-items">
+                <app-product-holder></app-product-holder>
+                <app-product-holder></app-product-holder>
+                <app-product-holder></app-product-holder>
+                <app-product-holder></app-product-holder>
+                <app-product-holder></app-product-holder>
+            </div>
+        </section>
+    </div>
+    <div class="menu-footer-container">
+    
+    </div>
+
+
+
+
+
+
+
+</div>

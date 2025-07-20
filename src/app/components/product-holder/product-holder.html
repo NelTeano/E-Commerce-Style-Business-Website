@@ -1,0 +1,20 @@
+
+<p-button (click)="showDialog()" label="Show" />
+<div class="product-holder-container">
+    <header>
+        <img src="assets/images/ProductDrinkSample.png" alt="Shop Logo" class="shop-logo">
+    </header>
+    <section>
+        <p>
+            Passion Pop Drink with Kiwi
+            Passionfruit Starbucks 
+            Refreshers™ Beverage (made with coconutmilk)
+        </p>
+    </section>
+</div>
+
+<p-dialog  [modal]="true" [(visible)]="visible">
+    <div class="product-holder-dialog">
+        
+    </div>
+</p-dialog>

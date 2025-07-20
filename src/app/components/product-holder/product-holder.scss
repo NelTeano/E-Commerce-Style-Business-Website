@@ -1,0 +1,50 @@
+@use '../../../styles/variables';
+
+.product-holder-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 310px;
+    margin-bottom: 50px;
+
+    header{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 140px;
+        width: 150px;
+        background-color: variables.$brown;
+        border-radius: 50%;
+
+        img{
+            width: auto;
+            height: 180px;
+            object-fit: cover;
+        }
+    }
+
+    section{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px 5px 0px 5px;
+        p{
+            font-size: 18px;
+            margin: 0px;
+            text-align: center;
+        }
+    }
+}
+
+
+.product-holder-dialog{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+    height: 400px;
+    background-color: variables.$brown;
+    border-radius: 10px;
+    
+}

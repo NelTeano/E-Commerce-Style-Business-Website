@@ -3,7 +3,8 @@
 
 .auth-button-login{
     display: flex;
-    background-color: variables.$dimmedYellow;
+    background-color: transparent;
+    border: solid 1px variables.$brown;
     color: variables.$brown;
     font-family: variables.$Poppins;
     font-weight: 600;
@@ -12,22 +13,22 @@
     padding: 10px 20px;
     width: 100px;
     height: 30px;
-    border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
 }
 
 .auth-button-logout{
     display: flex;
-    background-color: variables.$dimmedYellow;
+    background-color: transparent;
+    border: solid 1px variables.$brown;
     color: variables.$brown;
     font-family: variables.$Poppins;
+    font-weight: 600;
     align-items: center;
     justify-content: center;
     padding: 10px 20px;
     width: 100px;
     height: 30px;
-    border: white 1px solid;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
 }
