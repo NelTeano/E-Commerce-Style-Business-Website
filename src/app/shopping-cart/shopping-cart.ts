@@ -57,7 +57,7 @@ export class ShoppingCart {
   ];  
 
   get totalPrice(): number {
-    return this.MockProducts.reduce((sum, product) => sum + product.price * (product.quantity ?? 0), 0);
+    return this.MockProducts.reduce((sum, product) => sum + (product.price ?? 0) * (product.quantity ?? 0), 0);
   }
 
 

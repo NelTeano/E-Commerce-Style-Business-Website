@@ -6,15 +6,18 @@
     align-items: center;
     width: 310px;
     margin-bottom: 50px;
+    color: variables.$black;
+    text-decoration: none;
 
     header{
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 140px;
+        height: 150px;
         width: 150px;
         background-color: variables.$brown;
         border-radius: 50%;
+        overflow: hidden;
 
         img{
             width: auto;
@@ -22,7 +25,7 @@
             object-fit: cover;
         }
     }
-
+    
     section{
         display: flex;
         justify-content: center;
@@ -34,17 +37,118 @@
             text-align: center;
         }
     }
+
+    &:hover {
+        cursor: pointer;
+        img {
+            transform: scale(1.1); // shrink to 90%
+            transition: transform 0.3s ease;
+        }
+    }
 }
+
+
 
 
 .product-holder-dialog{
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 600px;
-    height: 400px;
-    background-color: variables.$brown;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 30px;
+    width: 100%;
+    height: 100%;
     border-radius: 10px;
+    background-color: variables.$white;
+    color: black;
     
+    section{
+        flex: 1; // take available space
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        background-color: variables.$brown;
+        height: 100%;
+        width: 200px;
+        overflow: hidden;
+
+        img{
+            width: 500px;
+        }
+    }
+
+    article{
+        flex: 2; 
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        height: 100%;
+        padding-right: 20px;
+        background-color: variables.$white;
+        color: variables.$black;
+
+        h1{
+            font-size: 34px;
+        }
+
+        p{
+            flex: 2;
+            font-size: 14px;
+        }
+
+        .custom-close-button{
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background-color: transparent;
+            border: none;
+            color: variables.$black;
+            cursor: pointer;
+
+            &:hover{
+                color: variables.$brown;
+            }
+        }
+
+        div{
+            display: flex;
+            justify-content: right;
+            margin-bottom: 50px;
+            gap: 20px;
+
+            .p-button-save, .p-button-add{
+                height: 40px;
+                font-size: 14px;
+                font-weight: 600;
+                border-radius: 5px;
+                background-color: variables.$white;
+            }
+        }
+    }
+}
+
+::ng-deep .p-dialog .p-dialog-header,
+::ng-deep .p-dialog .p-dialog-footer {
+  padding: 0px !important; /* Optional: Remove header/footer padding */
+}
+::ng-deep .p-dialog .p-dialog-content {
+  padding: 15px 15px 15px 15px !important; /* Removes the default padding */
+}
+
+:host ::ng-deep .custom-dialog .p-dialog-header-icon {
+  border: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  color: black !important; // or whatever you prefer
+}
+
+:host ::ng-deep .custom-dialog .p-dialog-header-icon:hover {
+  background-color: transparent !important;
+  color: #933C24 !important; // optional: color on hover
+  box-shadow: none !important;
+  border: none !important;
+}
+
+:host ::ng-deep .custom-dialog .p-dialog-header-close-icon {
+  font-size: 1.5rem !important; // optional: icon sizing
 }

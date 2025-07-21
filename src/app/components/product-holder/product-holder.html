@@ -1,20 +1,83 @@
-
-<p-button (click)="showDialog()" label="Show" />
-<div class="product-holder-container">
-    <header>
-        <img src="assets/images/ProductDrinkSample.png" alt="Shop Logo" class="shop-logo">
-    </header>
-    <section>
-        <p>
-            Passion Pop Drink with Kiwi
-            Passionfruit Starbucks 
-            Refreshers™ Beverage (made with coconutmilk)
-        </p>
-    </section>
+<div *ngIf="CategoryOnly; else showProductDialog">
+    <a class="product-holder-container" [routerLink]="['/menus', encodeSubVariant(ProductDetails.name || '')]">
+        <header>
+            <img [src]="ProductDetails.image" alt="Shop Logo" class="shop-logo">
+        </header>
+        <section>
+            <p>
+                {{ ProductDetails.name}}
+            </p>
+        </section>
+    </a>
 </div>
 
-<p-dialog  [modal]="true" [(visible)]="visible">
-    <div class="product-holder-dialog">
-        
+<ng-template #showProductDialog>
+    <div 
+        (click)="showDialog()" 
+        class="product-holder-container"
+    >
+        <header>
+            <img [src]="ProductDetails.image" alt="Shop Logo" class="shop-logo">
+        </header>
+        <section>
+            <p>
+                {{ ProductDetails.name}}
+            </p>
+        </section>
     </div>
-</p-dialog>
+    <p-dialog 
+        [style]="{'background-color': '#F5F5F5'}"
+        [contentStyle]="{ 'height': '500px', 'width': '65vw' }"
+        [modal]="true" 
+        [(visible)]="visible"
+        styleClass="custom-dialog"
+        closable="false"
+        [dismissableMask]=true
+     >
+     <div class="product-holder-dialog">
+            <section>
+                <img [src]="ProductDetails.image" alt="Shop Logo" class="shop-logo">
+            </section>
+            <article>
+                <button class="custom-close-button" (click)="visible = false">
+                    <i class="pi pi-times" style="font-size: 2rem;"></i>
+                </button>
+                <h1>
+                    {{ ProductDetails.name }}
+                </h1>
+                <p>
+                    {{ ProductDetails.description }}
+                </p>
+                <div>
+                    <p-button 
+                        pButton 
+                        label="Add to Cart" 
+                        class="p-button-add"
+                        [style]="{ 
+                            'background-color': '#933C24', 
+                            'border': 'solid 1px #933C24',
+                            'color': 'white',  
+                        }"
+                    >
+                        <i class="pi pi-cart-plus" style="font-size: 1.5rem;"></i>
+                    </p-button>
+                    <p-button 
+                        pButton
+                        label="Save as favorite"
+                        variant="outlined"
+                        severity="primary"
+                        class="p-button-save"
+                        [style]="{ 
+                            'background-color': 'transparent', 
+                            'border': 'solid 1px black',
+                            'color': 'black',  
+                        }"
+                    >
+                        <i class="pi pi-bookmark" style="font-size: 1.5rem;"></i>
+                    </p-button>
+                </div>
+            </article>
+        </div>
+    </p-dialog>
+</ng-template>
+

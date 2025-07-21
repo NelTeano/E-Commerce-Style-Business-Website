@@ -31,24 +31,37 @@
                 <h1>{{ variant.variant }}</h1>
                 <section>
                     <div *ngFor="let item of variant.subVariants">
-                        <p>{{ item }}</p>
+                        <a [routerLink]="['/menus', encodeSubVariant(item)]">
+                            <p>{{ item }}</p>
+                        </a>
                     </div>
                 </section>
             </div>
         </section>
         <section class="menu-products-container">
-            <div class="menu-products-header" >
-                <p>
-                    Featured Drinks
-                </p>
+            <div *ngIf="!selectedSubVariant" class="menu-products-items">
+                <ng-container *ngFor="let group of subVariantsWithImagesGrouped">
+                    <div class="menu-products-header" >
+                        <p>
+                            {{ group.variant }}
+                        </p>
+                    </div>
+                    <app-product-holder
+                        *ngFor="let product of group.subVariants"
+                        [ProductDetails]="product"
+                        [CategoryOnly]="true"
+                        (encodeURIComponent)="encodeSubVariant($event)"
+                    ></app-product-holder>
+                </ng-container>
             </div>
-            <div class="menu-products-items">
-                <app-product-holder></app-product-holder>
-                <app-product-holder></app-product-holder>
-                <app-product-holder></app-product-holder>
-                <app-product-holder></app-product-holder>
-                <app-product-holder></app-product-holder>
-            </div>
+            <ng-template [ngIf]="selectedSubVariant != ''">
+                <div class="menu-products-items">
+                    <app-product-holder
+                        *ngFor="let product of filteredProductVariants"
+                        [ProductDetails]="product"
+                    ></app-product-holder>
+                </div>
+            </ng-template>
         </section>
     </div>
     <div class="menu-footer-container">

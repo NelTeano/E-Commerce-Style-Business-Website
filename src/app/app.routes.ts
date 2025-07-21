@@ -20,6 +20,15 @@ export const routes: Routes = [
     {
         path: 'menus',
         canActivate: [AuthGuard],
-        loadComponent: () => import('./menu/menu').then(c => c.Menu)
+        children: [
+            {
+                path: '',
+                loadComponent: () => import('./menu/menu').then(c => c.Menu)
+            },
+            {
+                path: ':subVariant',
+                loadComponent: () => import('./menu/menu').then(c => c.Menu)
+            }
+        ]
     }
 ];
