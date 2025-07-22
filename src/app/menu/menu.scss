@@ -166,15 +166,36 @@
 
         .menu-products-header{
             display: flex;
-            align-items: center;
-            height: 80px;
+            flex-direction: column;
+            justify-content: center;
             width: 1200px;
-            // border-bottom: solid  black;
             margin-top: 40px;
+            margin-bottom: 20px;
+            gap: 5px;
 
             p{
                 font-size: 28px;
                 font-weight: bold;
+                margin: 0px;
+            }
+
+            .menu-products-directory{
+                display: flex;
+                flex-direction: row;
+                gap: 5px;
+                color: variables.$gray;
+
+                a{
+                    font-weight: 500;
+                    font-size: 16px;
+                    color: variables.$gray;
+                    text-decoration: none;
+                }
+                
+                p{
+                    font-size: 16px;
+                    margin: 0px;
+                }
             }
         }
 

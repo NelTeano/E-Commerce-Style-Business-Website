@@ -17,7 +17,7 @@
             <img src="assets/images/ShopLogo1.png" alt="Shop Image" class="menu-image">
         </section>
     </div>
-    <div class="menu-search-container">
+    <div class="menu-search-container" #searchSection>
         <div>
             <h2>
                 Menu
@@ -30,8 +30,8 @@
             <div class="menu-selections" *ngFor="let variant of menuVariants">
                 <h1>{{ variant.variant }}</h1>
                 <section>
-                    <div *ngFor="let item of variant.subVariants">
-                        <a [routerLink]="['/menus', encodeSubVariant(item)]">
+                    <div *ngFor="let item of variant.subVariants" >
+                        <a>
                             <p>{{ item }}</p>
                         </a>
                     </div>
@@ -39,22 +39,37 @@
             </div>
         </section>
         <section class="menu-products-container">
-            <div *ngIf="!selectedSubVariant" class="menu-products-items">
-                <ng-container *ngFor="let group of subVariantsWithImagesGrouped">
+            <ng-container *ngIf="!selectedSubVariant && !selectedVariant; else showFilteredProducts" class="menu-products-items">
+                <div *ngFor="let group of subVariantsWithImagesGrouped">
                     <div class="menu-products-header" >
                         <p>
                             {{ group.variant }}
                         </p>
                     </div>
-                    <app-product-holder
-                        *ngFor="let product of group.subVariants"
-                        [ProductDetails]="product"
-                        [CategoryOnly]="true"
-                        (encodeURIComponent)="encodeSubVariant($event)"
-                    ></app-product-holder>
-                </ng-container>
-            </div>
-            <ng-template [ngIf]="selectedSubVariant != ''">
+                    <div class="menu-products-items">
+                        <app-product-holder
+                            *ngFor="let product of group.subVariants"
+                            [ProductDetails]="product"
+                            [CategoryOnly]="true"
+                            (encodeURIComponent)="encodeSubVariant($event)"
+                        ></app-product-holder>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-template #showFilteredProducts>
+                <div class="menu-products-header" >
+                    <div class="menu-products-directory">
+                        <a routerLink="/menus">
+                            Menu /
+                        </a>
+                        <p>
+                            {{ selectedVariant }}
+                        </p>
+                    </div>
+                    <p>
+                        {{ selectedSubVariant }}
+                    </p>
+                </div>
                 <div class="menu-products-items">
                     <app-product-holder
                         *ngFor="let product of filteredProductVariants"

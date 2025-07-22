@@ -1,5 +1,8 @@
 <div *ngIf="CategoryOnly; else showProductDialog">
-    <a class="product-holder-container" [routerLink]="['/menus', encodeSubVariant(ProductDetails.name || '')]">
+    <a 
+        class="product-holder-container" 
+        [routerLink]="['/menus', encodeSubVariant(ProductDetails.name || '')]"
+    >
         <header>
             <img [src]="ProductDetails.image" alt="Shop Logo" class="shop-logo">
         </header>
