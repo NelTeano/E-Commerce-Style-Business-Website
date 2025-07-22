@@ -8,7 +8,11 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 
 
 // MOCK DATAS
-import { Mockproducts, menuVariants } from '../data/MockData';
+import { 
+  Mockproducts, // temporary just to hold the ui for the mean time
+  menuVariants,
+  MockProductsData // new data
+} from '../data/MockData';
 
 @Component({
   selector: 'app-menu',
