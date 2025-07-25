@@ -2,7 +2,7 @@ import { Component, Input, Output } from '@angular/core';
 import { DialogModule } from 'primeng/dialog';
 import { Button } from 'primeng/button';
 import { CommonModule } from '@angular/common';
-import { Product } from '../../interface/product.interface';
+import { Product, ProductItem } from '../../interface/product.interface';
 import { RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { EventEmitter } from '@angular/core';
@@ -24,7 +24,7 @@ export class ProductHolder {
   constructor(private route: ActivatedRoute) {}
 
 
-  @Input() ProductDetails!: Product;
+  @Input() ProductDetails!: ProductItem;
   @Input() CategoryOnly: boolean = false;
   @Output() encodeURIComponent = new EventEmitter<string>();
   visible: boolean = false;

@@ -1,108 +1,128 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { InputTextModule } from 'primeng/inputtext';
-import { Product } from '../interface/product.interface';
+import { Component, OnInit } from '@angular/core';
+import { Product, SubVariant, Variant, Category } from '../interface/product.interface';
 import { ProductHolder } from '../components/product-holder/product-holder';
 import { RouterModule } from '@angular/router';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
+// COMPONENTS
+import { DividerModule } from 'primeng/divider';
+import { InputTextModule } from 'primeng/inputtext';
 
 // MOCK DATAS
 import { 
-  Mockproducts, // temporary just to hold the ui for the mean time
+  Mockproducts,
   menuVariants,
-  MockProductsData // new data
+  MockProductsData
 } from '../data/MockData';
 
 @Component({
   selector: 'app-menu',
-  imports: [InputTextModule, CommonModule, ProductHolder, RouterModule],
+  standalone: true,
+  imports: [
+    InputTextModule,
+    CommonModule,
+    RouterModule,
+    ProductHolder,
+    DividerModule
+  ],
   templateUrl: './menu.html',
   styleUrl: './menu.scss'
 })
+export class Menu implements OnInit {
+  constructor(private route: ActivatedRoute) {}
 
-export class Menu {
-  constructor(private route: ActivatedRoute,) {}
-
-  menuVariants: { variant: string, subVariants: Array<string>}[] = menuVariants;
+  menuVariants = menuVariants;
   Mockproducts: Product[] = Mockproducts;
-  selectedVariant: string | null = null; 
+
+  VariantSelections: {
+    drinks: { variant: string; subVariants: { name: string; image: string }[] }[],
+    foods: { variant: string; subVariants: { name: string; image: string }[] }[]
+  } = { drinks: [], foods: [] };
+
   selectedSubVariant: string | null = null;
-  filteredProductVariants: Product[] = [];
-  subVariantsWithImagesGrouped: { 
-    variant: string; 
-    subVariants: { name: string; image: string }[] 
+
+  categoriesWithItems: {
+    variant: string;
+    subVariants: {
+      subVariant: string;
+      categories: Category[];
+    }[];
   }[] = [];
-  @ViewChild('searchSection') private myScrollContainer!: ElementRef;
 
-  scrollToSearch() {
-    this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-  }
+  filteredCategories: {
+    variant: string;
+    subVariant: string;
+    categories: Category[];
+  }[] = [];
 
-  productChoices = (subVariant: string): Product[] => {
-    return this.Mockproducts.filter(product => product.subVariant === subVariant);
-  }
-
-  
   encodeSubVariant(subVariant: string): string {
     return encodeURIComponent(subVariant);
   }
-  
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      const encodedVariant = params.get('subVariant');
-      if (encodedVariant) {
-        this.selectedSubVariant = decodeURIComponent(encodedVariant);
-        this.filteredProductVariants = this.productChoices(this.selectedSubVariant);
-        
-        if (this.filteredProductVariants && this.filteredProductVariants.length > 0) {
-          this.selectedVariant = this.filteredProductVariants[0]?.variant ?? null;
-        }
-
-        console.group('%c[SubVariant Debug]', 'color: blue; font-weight: bold');
-        console.log('Selected subvariant from route:', this.selectedSubVariant);
-        console.log('Products for selected subvariant:', this.filteredProductVariants);
-        console.groupEnd();
-
-
-        setTimeout(() => {
-          this.myScrollContainer?.nativeElement.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      }
-
-      
+    this.prepareData();
+    this.route.paramMap.subscribe(params => {
+      this.updateFilteredCategories(params);
     });
-
-    // Build grouped subVariants with image by their variant
-    const variantMap = new Map<string, Map<string, string>>();
-
-    this.Mockproducts.forEach(product => {
-      if (!product.subVariant || !product.image) return;
-
-      if (!variantMap.has(product.variant || '')) {
-        variantMap.set(product.variant || '', new Map<string, string>());
-      }
-
-      const subMap = variantMap.get(product.variant  || '')!;
-
-      // Add only if the subVariant hasn't been added yet
-      if (!subMap.has(product.subVariant)) {
-        subMap.set(product.subVariant, product.image);
-      }
-    });
-
-    this.subVariantsWithImagesGrouped = Array.from(variantMap.entries()).map(([variant, subMap]) => ({
-      variant,
-      subVariants: Array.from(subMap.entries()).map(([name, image]) => ({ name, image }))
-    }));
-
-    console.group('%c[Grouped SubVariants]', 'color: green; font-weight: bold');
-    console.log(this.subVariantsWithImagesGrouped);
-    console.groupEnd();
   }
 
+  private prepareData() {
+    const getSubVariantWithImage = (data: Variant) => ({
+      variant: data.variant,
+      subVariants: data.subVariants.map((sub: SubVariant) => ({
+        name: sub.name,
+        image: sub.categories[0]?.items[0]?.image || ''
+      }))
+    });
 
+    const getCategoriesWithItems = (data: Variant) => ({
+      variant: data.variant,
+      subVariants: data.subVariants.map((sub: SubVariant) => ({
+        subVariant: sub.name,
+        categories: sub.categories.filter(category => category.items && category.items.length > 0)
+      }))
+    });
 
+    const subVariantsWithImage = MockProductsData.map(getSubVariantWithImage);
+    this.categoriesWithItems = MockProductsData.map(getCategoriesWithItems);
 
+    this.VariantSelections = {
+      drinks: subVariantsWithImage.filter(variant => variant.variant === "Drinks"),
+      foods: subVariantsWithImage.filter(variant => variant.variant === "Foods")
+    };
+  }
+
+  private updateFilteredCategories(params: ParamMap) {
+    const encodedVariant = params.get('subVariant');
+    if (!encodedVariant) return;
+
+    this.selectedSubVariant = decodeURIComponent(encodedVariant);
+
+    this.filteredCategories = this.categoriesWithItems
+      .map((variant) => {
+        const matched = variant.subVariants.find(
+          (sub) => sub.subVariant === this.selectedSubVariant
+        );
+
+        return matched
+          ? {
+              variant: variant.variant,
+              subVariant: matched.subVariant,
+              categories: matched.categories
+            }
+          : null;
+      })
+      .filter(Boolean) as {
+        variant: string;
+        subVariant: string;
+        categories: Category[];
+      }[];
+
+    // Logging for debug
+    console.group('%c[Route Update]', 'color: green; font-weight: bold');
+    console.log("Updated SubVariant:", this.selectedSubVariant);
+    console.log("Filtered Categories:", this.filteredCategories);
+    console.groupEnd();
+  }
 }

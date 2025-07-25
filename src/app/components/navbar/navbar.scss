@@ -69,6 +69,32 @@
     }
 
 
+    .navbar-right{
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+        align-items: center;
+
+        section{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent;
+            border: 1px solid variables.$brown;
+            color: variables.$brown;
+            height: 40px;
+            width: 40px;
+            border-radius: 20px;
+        }
+
+        section:first-child{
+            background-color: variables.$brown;
+            border: none;
+            color: white;
+        }
+    }
+
+
 }
 
 

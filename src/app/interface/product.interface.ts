@@ -21,12 +21,12 @@ export interface ProductSize {
 }
 
 export interface ProductItem {
-  id: number;
-  name: string;
-  image: string;
-  description: string;
-  quantity: number;
-  sizes: ProductSize[];
+  id?: number;
+  name?: string;
+  image?: string;
+  description?: string;
+  quantity?: number;
+  sizes?: ProductSize[];
 }
 
 export interface Category {

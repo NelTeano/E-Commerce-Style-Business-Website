@@ -31,7 +31,7 @@
                 <h1>{{ variant.variant }}</h1>
                 <section>
                     <div *ngFor="let item of variant.subVariants" >
-                        <a>
+                        <a [routerLink]="['/menus', encodeSubVariant(item || '')]">
                             <p>{{ item }}</p>
                         </a>
                     </div>
@@ -39,48 +39,58 @@
             </div>
         </section>
         <section class="menu-products-container">
-            <ng-container *ngIf="!selectedSubVariant && !selectedVariant; else showFilteredProducts" class="menu-products-items">
-                <div *ngFor="let group of subVariantsWithImagesGrouped">
-                    <div class="menu-products-header" >
-                        <p>
-                            {{ group.variant }}
-                        </p>
-                    </div>
-                    <div class="menu-products-items">
-                        <app-product-holder
-                            *ngFor="let product of group.subVariants"
-                            [ProductDetails]="product"
-                            [CategoryOnly]="true"
-                            (encodeURIComponent)="encodeSubVariant($event)"
-                        ></app-product-holder>
+            <ng-container *ngIf="VariantSelections && selectedSubVariant == null; else showCategories">
+                <div *ngFor="let group of [VariantSelections.drinks, VariantSelections.foods]">
+                    <div *ngFor="let section of group">
+                        <div class="menu-products-header">
+                            <p>{{ section.variant }}</p>
+                        </div>
+                        <div class="menu-products-items">
+                            <app-product-holder
+                                *ngFor="let product of section.subVariants"
+                                [ProductDetails]="product"
+                                [CategoryOnly]="true"
+                                (encodeURIComponent)="encodeSubVariant($event)">
+                            </app-product-holder>
+                        </div>
                     </div>
                 </div>
             </ng-container>
-            <ng-template #showFilteredProducts>
-                <div class="menu-products-header" >
-                    <div class="menu-products-directory">
-                        <a routerLink="/menus">
-                            Menu /
-                        </a>
+            <ng-template #showCategories>
+                <div *ngFor="let item of filteredCategories">
+                    <div class="menu-products-header" >
+                        <div class="menu-products-directory">
+                            <a routerLink="/menus">
+                                Menu /
+                            </a>
+                            <p>
+                                {{ item.variant }}
+                            </p>
+                        </div>
                         <p>
-                            {{ selectedVariant }}
+                            {{ item.subVariant}}
                         </p>
                     </div>
-                    <p>
-                        {{ selectedSubVariant }}
-                    </p>
-                </div>
-                <div class="menu-products-items">
-                    <app-product-holder
-                        *ngFor="let product of filteredProductVariants"
-                        [ProductDetails]="product"
-                    ></app-product-holder>
+                    <div class="menu-products-items"  *ngFor="let categories of item.categories">
+                        <div class="menu-products-header">
+                            <h2>
+                                {{ categories.name }}
+                            </h2>
+                            <p-divider styleClass="gray-divider" />
+                        </div>
+                        <app-product-holder
+                            *ngFor="let categoryItem of categories.items"
+                            [ProductDetails]="categoryItem"
+                        ></app-product-holder>
+                    </div>
                 </div>
             </ng-template>
         </section>
     </div>
     <div class="menu-footer-container">
-    
+        <div>
+           
+        </div>
     </div>
 
 

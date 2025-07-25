@@ -532,7 +532,7 @@ export const MockProductsData: Variant[] = [
     ]
   },
   {
-    variant: 'Food',
+    variant: 'Foods',
     subVariants: [
       {
         name: 'Featured Food',
