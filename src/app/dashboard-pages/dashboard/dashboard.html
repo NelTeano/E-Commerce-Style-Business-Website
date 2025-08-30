@@ -1,0 +1,67 @@
+
+
+
+<!-- <ng-container *ngIf="!(auth.isLoading$ | async)">
+    <div *ngIf="auth.isAuthenticated$ | async; else notAuth">
+        <h1>Welcome to the Dashboard</h1>
+    </div>
+    <ul *ngIf="auth.user$ | async as user">
+        <li>{{ user.name }}</li>
+        <li>{{ user.email }}</li>
+    </ul>
+    <ng-template #notAuth>
+        <p>You are not logged in.</p>
+    </ng-template>
+</ng-container>
+<button (click)="fetchUsers()">Fetch Users</button> -->
+<div class="dashboard-container">
+    <div class="dashboard-sidebar">
+        <app-navbar></app-navbar>
+    </div>
+    <div class="dashboard-display">
+        <section class="cards-section">
+            <app-cards></app-cards>
+            <app-cards></app-cards>
+            <app-cards></app-cards>
+            <app-cards></app-cards>
+        </section>
+        <div class="activity-section">
+            <section class="chart-section">
+                <header>
+                    <p>Unique Visitor Graph</p>
+                    <p-select
+                        [options]="yearSelections"
+                        [(ngModel)]="selectedYear"
+                        optionLabel="name"
+                        optionValue="value"
+                        placeholder="Select Year"
+                        size="small"
+                        variant="filled"
+                        (ngModelChange)="onYearChange($event)"
+                        class="year-select"
+                    />
+                </header>
+                <div class="chart-placeholder">
+                    <p-chart type="bar" [data]="revenueData" [options]="options" class="h-[30rem]" />
+                </div>
+            </section>
+            <section class="transaction-section">
+                <header>
+                    <p>
+                        Transaction history
+                    </p>
+                    <i class="pi pi-refresh"></i>
+                </header>
+                <div>
+                    <app-transaction-card></app-transaction-card>
+                    <app-transaction-card></app-transaction-card>
+                    <app-transaction-card></app-transaction-card>
+                    <app-transaction-card></app-transaction-card>
+
+                </div>
+            </section>
+        </div>
+        <app-auth-button></app-auth-button>
+    </div>
+</div>
+

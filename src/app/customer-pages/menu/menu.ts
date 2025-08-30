@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Product, SubVariant, Variant, Category } from '../interface/product.interface';
-import { ProductHolder } from '../components/product-holder/product-holder';
+import { Product, SubVariant, Variant, Category } from '../../interface/product.interface';
+import { ProductHolder } from '../../components/product-holder/product-holder';
 import { RouterModule } from '@angular/router';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
@@ -14,7 +14,7 @@ import {
   Mockproducts,
   menuVariants,
   MockProductsData
-} from '../data/MockData';
+} from '../../data/MockData';
 
 @Component({
   selector: 'app-menu',

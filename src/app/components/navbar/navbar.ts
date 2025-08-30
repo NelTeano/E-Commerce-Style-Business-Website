@@ -41,8 +41,8 @@ export class Navbar {
   }
 
   navItems = [
-    { label: 'Home', link: '/' },
-    { label: 'Menu', link: '/menus' },
-    { label: 'Merchandise', link: '/merchandise' }
+    { label: 'Home', link: '/customer' },
+    { label: 'Menu', link: '/customer/menus' },
+    { label: 'Merchandise', link: '/customer/merchandise' }
   ];
 }

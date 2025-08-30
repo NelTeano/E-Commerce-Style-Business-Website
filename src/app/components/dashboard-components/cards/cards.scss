@@ -1,0 +1,12 @@
+@use '../../../../styles/variables';
+
+.cards-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 140px;
+    width: 380px;
+    border-radius: 10px;
+    color: black;
+    background-color: variables.$white;
+}
