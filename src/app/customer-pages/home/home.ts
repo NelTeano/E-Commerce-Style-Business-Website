@@ -3,7 +3,7 @@ import { ProductCard } from '../../components/product-card/product-card';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../interface/product.interface'; // Assuming you have a Product model defined
 import { ButtonModule } from 'primeng/button';
-
+import { Navbar } from '../../components/navbar/navbar';
 
 
 @Component({
@@ -11,7 +11,8 @@ import { ButtonModule } from 'primeng/button';
   imports: [
     ProductCard,
     CommonModule, 
-    ButtonModule
+    ButtonModule,
+    Navbar
   ],
   templateUrl: './home.html',
   styleUrl: './home.scss'
