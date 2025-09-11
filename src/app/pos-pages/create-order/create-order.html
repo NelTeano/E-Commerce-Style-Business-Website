@@ -1,5 +1,134 @@
 <div class="order-container">
-        <h2>order Summary</h2>
-        <!-- Summary details go here -->
+        <div class="order-menus">
+                <div class="menu-section">
+                        <h2>Choose Variant : {{ selectedVariant }}</h2>
+                </div>
+                <div class="menu-variants">
+                        <!-- Show variants if no variant is selected -->
+                        <div class="back-button" [ngStyle]="{'display': selectedVariant ? 'flex' : 'none'}" (click)="onBackToVariants()">
+                                <i class="pi pi-arrow-left" style="font-size: 1.5rem; cursor: pointer;"></i>
+                        </div>
+                        @if (!selectedVariant) {
+                                <div class="variant-item" *ngFor="let variant of variants" (click)="onVariantSelect(variant)">
+                                        <div class="variant-image">
+                                                <img src="assets/images/ProductDrinkSample.png" [alt]="variant" />
+                                        </div>
+                                        <div class="variant-name">
+                                                <p>{{ variant }}</p>
+                                        </div>
+                                </div>
+                        } @else {
+                                <div (click)="onSubVariantSelect(sub)" class="variant-item" *ngFor="let sub of subVariants">
+                                        <div class="variant-image">
+                                                <img src="assets/images/ProductDrinkSample.png" [alt]="sub" />
+                                        </div>
+                                        <div class="variant-name">
+                                                <p>{{ sub }}</p>
+                                        </div>
+                                </div>
+                        }
+                </div>
+                @if(selectedSubVariant){
+                        <div class="menu-selections">
+                                <h2>Choose Category : {{selectedCategory}}</h2>
+                                <div class="menu-category-container">
+                                        @if(categoriesWithItems){
+                                                @for (category of categoriesWithItems; track category.name) {
+                        
+                                                        <div class="variant-item" (click)="onCategorySelect(category.name)">
+                                                                <div class="variant-image">
+                                                                <img [src]="[category.items[0].image]" [alt]="category.name" />
+                                                                </div>
+                                                                <div class="variant-name">
+                                                                        <p>{{ category.name }}</p>
+                                                                </div>
+                                                        </div>
+                                                }
+                                        }
+                                </div>
+                                @if(selectedCategoryItems){
+                                        <div class="menu-items-container">
+                                                 @for(items of selectedCategoryItems; track items.id){
+                                                        <div class="variant-item">
+                                                                <div class="variant-image">
+                                                                <img [src]="[items.image]" [alt]="items.name" />
+                                                                </div>
+                                                                <div class="variant-name">
+                                                                        <p>{{ items.name }}</p>
+                                                                </div>
+                                                        </div>
+                                                }
+                                                @for(items of selectedCategoryItems; track items.id){
+                                                        <div class="variant-item">
+                                                                <div class="variant-image">
+                                                                <img [src]="[items.image]" [alt]="items.name" />
+                                                                </div>
+                                                                <div class="variant-name">
+                                                                        <p>{{ items.name }}</p>
+                                                                </div>
+                                                        </div>
+                                                }
+                                                @for(items of selectedCategoryItems; track items.id){
+                                                        <div class="variant-item">
+                                                                <div class="variant-image">
+                                                                <img [src]="[items.image]" [alt]="items.name" />
+                                                                </div>
+                                                                <div class="variant-name">
+                                                                        <p>{{ items.name }}</p>
+                                                                </div>
+                                                        </div>
+                                                }
+                                        </div>
+                                }
+                                
+                        </div>
+                }
+        </div>
+        <div class="order-summary-container">
+                <h2>Order Summary</h2>
+                <div class="order-items-container">
+                        @for (item of [1,2,3,4,5,6,7,8,9,10]; track item) {
+                                <div class="cart-item-container">
+                                        <div class="cart-image">
+                                                <img src="assets/images/ProductDrinkSample.png" alt="sample image">
+                                        </div>
+                                        <div class="cart-details">
+                                                <h2>Chocolate Frappuccino</h2>
+                                                <div class="cart-summary">
+                                                        <article>
+                                                                <div class="quantity-container">
+                                                                        <section class="quantity-plus">
+                                                                                <i class="pi pi-minus"></i>
+                                                                        </section>
+                                                                        <p>1</p>
+                                                                        <section class="quantity-minus">
+                                                                                <i class="pi pi-plus"></i>
+                                                                        </section>
+                                                                </div>
+                                                                <div class="notes-container">
+                                                                        <i class="pi pi-pen-to-square"></i> Regular
+                                                                </div>
+                                                        </article>
+                                                        <p>$3.95</p>
+                                                </div>
+                                        </div>
+                                </div>
+                        }
+                </div>
+                
+                <div class="order-total-container">
+                        <div class="total-details">
+                                <p-divider type="dashed" />
+                                <section>
+                                        <h2>Total:</h2>
+                                        <h2>$3.95</h2>
+                                </section>
+                        </div>
+                        <div class="checkout-container">
+                                <button class="checkout-button">Checkout</button>
+                        </div>
+                </div>
+
+        </div>
 </div>
 

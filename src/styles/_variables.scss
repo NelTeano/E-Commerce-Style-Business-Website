@@ -1,13 +1,23 @@
 $brown: #933C24 !default;
 $white: #F5F5F5 !default;
 $black: #111111 !default;
+$lightBlack: #2E2E2E !default;
 $gray: #5D5D5D !default;
 $lightGray: #f3f2f2 !default;
 $dimmedYellow: #E9BD8C !default;
-
+$lightBrown: #F4E3D2 !default;
 
 $Poppins: 'Poppins', sans-serif !default;
 $SansitaSwashed: 'Sansita Swashed', system-ui !default;
+
+
+// Font Sizes
+$font-xs: 12px !default;
+$font-sm: 14px !default;
+$font-md: 16px !default;
+$font-lg: 18px !default;
+$font-xl: 24px !default;
+
 
 
 $scrollbar-thumb: $black !default;

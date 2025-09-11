@@ -1,10 +1,50 @@
 <div class="dashboard-container">
     <div class="dashboard-main">
-        <h2>Dashboard Summary</h2>
-        <!-- Summary details go here -->
+        <div class="dashboard-date">
+            <h2>28 October 2025</h2>
+            <p>Thursday</p>
+            <p>|</p>
+            <p>17:30</p>
+        </div>
+        
+        <div class="dashboard-cards">
+            <app-cards></app-cards>
+            <app-cards></app-cards>
+            <app-cards></app-cards>
+            <app-cards></app-cards>
+        </div>
+        <div class="dashboard-chart">
+            <p-chart type="bar" [data]="revenueData" [options]="options" class="chart" />
+        </div>
     </div>
-    <div class="dashboard-statistics">
-        <h2>Dashboard Details</h2>
-        <app-cards></app-cards>
+
+    <!-- LEFT SECTION -->
+    <div class="dashboard-table">
+        <h2>Ordered Items</h2>
+        <p-table [value]="recentActivity" [tableStyle]="{ 'min-width': '20rem' }">
+            <ng-template #caption>
+                <div class="flex items-center justify-between">
+                    <span class="text-xl font-bold">Products</span>
+                </div>
+            </ng-template>
+                <ng-template #header>
+                    <tr>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                        <th>Status</th>
+                    </tr>
+                </ng-template>
+                <ng-template #body let-recentActivity>
+                    <tr>
+                        <td>{{ recentActivity.customer_name }}</td>
+                        <td>{{ recentActivity.product_qty }}</td>
+                        <td>{{ recentActivity.total | currency: 'PHP' }}</td>
+                        <td>
+                            <p-tag [value]="recentActivity.status" [severity]="getSeverity(recentActivity.status)" />
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
     </div>
 </div>
