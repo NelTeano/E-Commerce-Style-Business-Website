@@ -1,7 +1,138 @@
+@use '../../../styles/variables';
+
 .checkout-container{
     display: flex;
+    flex-direction: row;
     position: relative;
     width: 100%;
     height: 100vh;
-    background-color: bisque;
+    background-color: white;
+}
+
+.checkout-form-container{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: variables.$white;
+    
+    .checkout-form{
+        height: auto;
+        width: 80%;
+        padding: 20px;
+        box-sizing: border-box;
+        background-color: variables.$brown;
+        color: bisque;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        font-family: variables.$Poppins;
+
+        h2{
+            margin-bottom: 20px;
+            font-size: variables.$font-lg;
+            color: variables.$white;
+        }
+        
+
+        .form-inputs{
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+
+            label{
+                font-size: variables.$font-md;
+                margin-bottom: 5px;
+            }
+
+            input{
+                padding: 10px;
+                font-size: variables.$font-md;
+                border: 1px solid variables.$gray;
+                border-radius: 4px;
+                width: 100%;
+                box-sizing: border-box;
+                background-color: variables.$lightGray;
+                &:focus{
+                    border-color: variables.$brown;
+                    outline: none;
+                }
+            }
+        }
+
+        .form-payment{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            .payment-methods{
+                display: flex;
+                flex-direction: row;
+                gap: 20px;
+
+                section{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 10px;
+                    height: 100px;
+                    width: 100px;
+                    font-size: variables.$font-md;
+                    color: variables.$brown;
+                    background-color: variables.$lightBrown;
+                    border: none;
+                    border-radius: 50%;
+                    cursor: pointer;
+
+                    i{
+                        font-size: 25px;
+                    }
+
+                    p{
+                        margin: 0;
+                        padding: 0;
+                        text-align: center;
+                        font-weight: 600;
+                    }
+
+                    &:hover{
+                        background-color: variables.$lightBrown;
+                    }
+                }
+            }
+        }
+
+        .form-actions{
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            button{
+                width: 200px;
+                padding: 10px 20px;
+                font-size: variables.$font-md;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+
+                &:first-child{
+                    background-color: variables.$lightGray;
+                    color: variables.$brown;
+                }
+
+                &:last-child{
+                    background-color: variables.$lightBrown;
+                    color: variables.$brown;
+                }
+            }
+        }
+    }
+
+}
+
+.checkout-receipt-details{
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    border-left: 2px solid #ccc;
+    overflow-y: auto;
 }
