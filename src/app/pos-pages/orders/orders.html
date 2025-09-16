@@ -1,4 +1,46 @@
 <div class="orders-container">
-        <h2>Orders Summary</h2>
-        <!-- Summary details go here -->
+        <div class="orders-header">
+                <div class="orders-date">
+                    <h2>28 October 2025</h2>
+                    <p>Thursday</p>
+                    <p>|</p>
+                    <p>17:30</p>
+                </div>
+                <h2>Pending Orders</h2>
+        </div>
+        <div class="orders-list">
+                @for (order of orders; track order.id) {
+                        <div class="orders-item">
+                                <div class="order-header">
+                                        <span class="order-number">Order #{{ order.id }}</span>
+                                        <span class="order-time">{{ order.time }}</span>
+                                </div>
+
+                                <div class="order-meta">
+                                        <span class="order-type">{{ order.type }}</span>
+                                        <span class="customer">Customer: {{ order.customer }}</span>
+                                </div>
+
+                                <div class="order-body">
+                                        @for (item of order.items; track $index) {
+                                                <div class="order-line">
+                                                <div class="line-top">
+                                                <span class="qty">{{ item.qty }}x</span>
+                                                <span class="item">{{ item.name }}</span>
+                                                <span class="price">{{ item.price }}</span>
+                                        </div>
+                                        @if (item.addons) {
+                                                <div class="line-addons">{{ item.addons }}</div>
+                                        }
+                                                </div>
+                                        }
+                                </div>
+
+                                <div class="order-footer">
+                                        <span>Total</span>
+                                        <span class="total">{{ order.total }}</span>
+                                </div>
+                        </div>
+                        }
+        </div>
 </div>
